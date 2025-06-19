@@ -34,3 +34,8 @@ def logout_view(request):
     logout(request)
     messages.info(request, "تم تسجيل الخروج.")
     return redirect('login')
+
+from django.shortcuts import render
+
+def home(request):
+    return render(request, 'home.html')
