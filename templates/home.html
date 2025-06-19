@@ -1,0 +1,49 @@
+<!-- templates/home.html -->
+{% include 'header.html' %}
+
+<main class="hero">
+  <div class="container">
+      <h2>مرحبًا بكم في منصة الدورات الجامعية</h2>
+      <p>استكشف دورات احترافية، سجّل، وتعلّم بالسرعة التي تناسبك.</p>
+      <a href="/courses/" class="cta-btn">ابدأ الآن</a>
+  </div>
+</main>
+
+<section class="features">
+  <div class="container grid">
+      <div class="card">
+          <h3>تنوع المحتوى</h3>
+          <p>دورات في البرمجة، الإدارة، واللغات وغير ذلك.</p>
+      </div>
+      <div class="card">
+          <h3>لوحة تقدم</h3>
+          <p>تابع مستوى إنجازك واحصل على شهادات رقمية.</p>
+      </div>
+      <div class="card">
+          <h3>مجتمع تفاعلي</h3>
+          <p>تفاعل مع المدرسين والزملاء عبر التعليقات والمنتديات.</p>
+      </div>
+  </div>
+</section>
+
+{% include 'footer.html' %}
+
+<style>
+  body{margin:0;font-family:'Cairo',sans-serif;background:var(--bg);color:#333;
+      line-height:1.6;}
+  .container{max-width:1000px;margin:auto;padding:0 20px;}
+  .hero{background:linear-gradient(135deg,var(--accent),#009688);
+      color:#fff;padding:60px 0;text-align:center;}
+  .hero h2{font-size:2rem;margin-bottom:10px;font-weight:700;}
+  .hero .cta-btn{display:inline-block;background:#fff;color:#009688;
+      padding:10px 26px;border-radius:30px;font-weight:700;
+      text-decoration:none;transition:background .2s;}
+  .hero .cta-btn:hover{background:#f1f1f1}
+  .features{padding:60px 0;}
+  .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+      gap:20px;}
+  .card{background:#fff;padding:30px;border-radius:12px;box-shadow:0 2px 8px rgba(0,0,0,.05);
+      text-align:center;transition:transform .2s;}
+  .card:hover{transform:translateY(-6px);}
+  .card h3{color:var(--primary);margin-bottom:12px;}
+</style>

@@ -1,0 +1,29 @@
+<!-- templates/header.html -->
+<header class="main-header">
+  <div class="container">
+      <h1 class="logo"><a href="/">Student Platform</a></h1>
+
+      <nav class="nav-links">
+          <a href="/">الرئيسية</a>
+          <a href="/courses/">الدورات</a>
+          <a href="/accounts/profile/">حسابي</a>
+          <a href="/admin/">لوحة الإدارة</a>
+      </nav>
+  </div>
+</header>
+
+<style>
+  :root{
+    --primary:#3E4A61;
+    --secondary:#65748C;
+    --accent:#4ECDC4;
+    --bg:#F7F9FB;
+  }
+  .main-header{background:var(--primary);color:#fff;padding:12px 0;}
+  .main-header .container{max-width:1000px;margin:auto;display:flex;
+      align-items:center;justify-content:space-between;}
+  .logo a{color:#fff;font-size:1.4rem;font-weight:700;text-decoration:none;}
+  .nav-links a{color:#fff;margin-left:20px;text-decoration:none;font-size:1rem;
+      transition:opacity .2s;}
+  .nav-links a:hover{opacity:.75}
+</style>

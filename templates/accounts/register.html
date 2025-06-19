@@ -1,0 +1,51 @@
+{% include 'header.html' %}
+
+<div class="form-container">
+    <h2>تسجيل حساب جديد</h2>
+    <form method="POST">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">إنشاء الحساب</button>
+    </form>
+    <p>هل لديك حساب؟ <a href="{% url 'login' %}">تسجيل الدخول</a></p>
+</div>
+
+{% include 'footer.html' %}
+
+<style>
+  .form-container {
+      max-width: 400px;
+      margin: 60px auto;
+      background: #fff;
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  }
+  .form-container h2 {
+      text-align: center;
+      margin-bottom: 20px;
+      color: #3E4A61;
+  }
+  .form-container form {
+      display: flex;
+      flex-direction: column;
+  }
+  .form-container input, .form-container select, .form-container textarea {
+      margin-bottom: 15px;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+  }
+  .form-container button {
+      background-color: #4ECDC4;
+      color: white;
+      border: none;
+      padding: 10px;
+      font-weight: bold;
+      border-radius: 6px;
+      cursor: pointer;
+  }
+  .form-container button:hover {
+      background-color: #38b2ac;
+  }
+</style>
