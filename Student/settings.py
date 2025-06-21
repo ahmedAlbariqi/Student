@@ -2,12 +2,15 @@ from pathlib import Path
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
+# ⚠️ تأكد من وضع هذا المفتاح في متغير بيئة عند نشر المشروع
 SECRET_KEY = 'django-insecure-01k1y(b-dej2tt2sh3tk_6o547ep)x()fi4ioxg*o=ic13l*uw'
 
 DEBUG = True
-
 ALLOWED_HOSTS = []
 
+# ────────────────────────────────────────────────
+# التطبيقات المثبتة
+# ────────────────────────────────────────────────
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
@@ -16,12 +19,19 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
-    # ✅ التطبيقات الخاصة بالمشروع
+    # ✅ تطبيقات المشروع
     'accounts',
     'courses',
     'enrollments',
+
+    # ✅ Cloudinary
+    'cloudinary',
+    'cloudinary_storage',
 ]
 
+# ────────────────────────────────────────────────
+# الوسطاء
+# ────────────────────────────────────────────────
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -34,6 +44,9 @@ MIDDLEWARE = [
 
 ROOT_URLCONF = 'Student.urls'
 
+# ────────────────────────────────────────────────
+# القوالب
+# ────────────────────────────────────────────────
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
@@ -51,6 +64,9 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'Student.wsgi.application'
 
+# ────────────────────────────────────────────────
+# قاعدة البيانات
+# ────────────────────────────────────────────────
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
@@ -58,32 +74,41 @@ DATABASES = {
     }
 }
 
+# ────────────────────────────────────────────────
+# التحقق من كلمات المرور
+# ────────────────────────────────────────────────
 AUTH_PASSWORD_VALIDATORS = [
-    {
-        'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
-    },
-    {
-        'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator',
-    },
-    {
-        'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator',
-    },
-    {
-        'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
-    },
+    {'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator'},
+    {'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator'},
+    {'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator'},
+    {'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator'},
 ]
 
-# ✅ اللغة والتوقيت
+# ────────────────────────────────────────────────
+# اللغة والتوقيت
+# ────────────────────────────────────────────────
 LANGUAGE_CODE = 'ar'
 TIME_ZONE = 'Asia/Riyadh'
-
 USE_I18N = True
 USE_TZ = True
 
-# ✅ ملفات الاستايل
+# ────────────────────────────────────────────────
+# الملفات الثابتة
+# ────────────────────────────────────────────────
 STATIC_URL = 'static/'
 
-# ✅ ملفات الوسائط (الصور المرفوعة)
+# ────────────────────────────────────────────────
+# إعداد Cloudinary لتخزين الوسائط
+# ────────────────────────────────────────────────
+CLOUDINARY_STORAGE = {
+    'CLOUD_NAME': 'da4etlrox',
+    'API_KEY':    '591474588512373',
+    'API_SECRET': 'DsvPexFFqmhS5Sm7A7Mj-w_6BUU',
+}
+
+DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
+
+# إذا رغبت بالاحتفاظ بالصور محليًا أثناء DEBUG يمكنك إبقاء MEDIA_*‎
 MEDIA_URL = '/media/'
 MEDIA_ROOT = BASE_DIR / 'media'
 

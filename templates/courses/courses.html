@@ -11,10 +11,12 @@
             {% if course.image %}
               <img src="{{ course.image.url }}" alt="صورة الدورة" class="course-image">
             {% endif %}
-            <h3>{{ course.title }}</h3>
-            <p class="description">{{ course.description|truncatechars:100 }}</p>
-            <p class="instructor">المدرّس: {{ course.instructor.username }}</p>
-            <a href="#" class="view-btn">عرض الدورة</a>
+            <div class="course-content">
+              <h3 class="course-title">{{ course.title }}</h3>
+              <p class="description">{{ course.description|truncatechars:100 }}</p>
+              <p class="instructor">المدرّس: <strong>{{ course.instructor.username }}</strong></p>
+              <a href="#" class="view-btn">عرض الدورة</a>
+            </div>
           </div>
         {% endfor %}
       </div>
@@ -42,52 +44,53 @@
     text-align: center;
     color: var(--primary);
     margin-bottom: 40px;
-    font-size: 2rem;
+    font-size: 2.2rem;
   }
 
   .course-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 20px;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 30px;
   }
 
   .course-card {
     background-color: #fff;
-    padding: 20px;
     border-radius: 12px;
-    box-shadow: 0 2px 10px rgba(0,0,0,0.06);
+    box-shadow: 0 3px 15px rgba(0,0,0,0.05);
+    overflow: hidden;
     transition: transform 0.3s ease;
     display: flex;
     flex-direction: column;
-    align-items: center;
-    text-align: center;
   }
 
   .course-card:hover {
-    transform: translateY(-5px);
+    transform: translateY(-6px);
   }
 
   .course-image {
     width: 100%;
-    height: 180px;
+    height: 190px;
     object-fit: cover;
-    border-radius: 10px;
-    margin-bottom: 15px;
   }
 
-  .course-card h3 {
+  .course-content {
+    padding: 20px;
+    text-align: center;
+  }
+
+  .course-title {
     margin-bottom: 10px;
     color: var(--primary);
-    font-size: 1.2rem;
+    font-size: 1.3rem;
   }
 
-  .course-card .description {
+  .description {
     font-size: 0.95rem;
     color: #555;
     margin-bottom: 10px;
   }
 
-  .course-card .instructor {
+  .instructor {
     font-size: 0.9rem;
     color: var(--muted);
     margin-bottom: 15px;
@@ -95,16 +98,17 @@
 
   .view-btn {
     display: inline-block;
-    padding: 8px 20px;
+    padding: 10px 25px;
     border-radius: 30px;
     background-color: var(--accent);
     color: #fff;
     text-decoration: none;
     font-weight: bold;
+    transition: background-color 0.2s ease;
   }
 
   .view-btn:hover {
-    background-color: #38b2ac;
+    background-color: #319795;
   }
 
   .no-courses-box {
@@ -119,5 +123,16 @@
   .no-courses-box p {
     font-size: 1.1rem;
     margin-top: 15px;
+  }
+
+  @media (max-width: 500px) {
+    .section-title {
+      font-size: 1.6rem;
+    }
+
+    .view-btn {
+      padding: 8px 16px;
+      font-size: 0.9rem;
+    }
   }
 </style>
