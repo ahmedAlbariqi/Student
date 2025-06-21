@@ -1,5 +1,6 @@
 from django.urls import path
+from . import views
 
 urlpatterns = [
-    # سيتم إضافة المسارات لاحقًا هنا
+    path('', views.course_list, name='course_list'),
 ]

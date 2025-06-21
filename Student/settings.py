@@ -80,6 +80,11 @@ TIME_ZONE = 'Asia/Riyadh'
 USE_I18N = True
 USE_TZ = True
 
+# ✅ ملفات الاستايل
 STATIC_URL = 'static/'
+
+# ✅ ملفات الوسائط (الصور المرفوعة)
+MEDIA_URL = '/media/'
+MEDIA_ROOT = BASE_DIR / 'media'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
