@@ -1,147 +1,1008 @@
-{% include 'header.html' %}
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SkillZen - منصة التعليم الجامعي</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #2D3748;
+            --accent: #4ECDC4;
+            --accent-dark: #38b2ac;
+            --secondary: #5A67D8;
+            --light: #F7FAFC;
+            --dark: #1A202C;
+            --text: #2D3748;
+            --muted: #718096;
+            --success: #48BB78;
+            --shadow-sm: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            --shadow-md: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+            --shadow-lg: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+            --transition: all 0.3s ease;
+            --radius: 12px;
+            --radius-sm: 8px;
+        }
 
-<main class="hero">
-  <div class="container">
-    <h1>مرحبًا بك في <span class="brand">SkillZen</span></h1>
-    <p class="lead">منصة تعليمية مخصصة لطلاب الجامعات — تعلم، تطور، وانطلق بثقة نحو المستقبل.</p>
-    <div class="hero-buttons">
-      <a href="{% url 'register' %}" class="btn btn-primary">إنشاء حساب</a>
-      <a href="{% url 'login' %}" class="btn btn-outline">تسجيل الدخول</a>
-    </div>
-  </div>
-</main>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-<section class="features">
-  <div class="container grid">
+        body {
+            font-family: 'Cairo', sans-serif;
+            background-color: var(--light);
+            color: var(--text);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
 
-    <div class="card">
-      <div class="icon">
-        <!-- أيقونة مسارات تعليمية -->
-        <svg width="40" height="40" viewBox="0 0 24 24" fill="#4ECDC4" xmlns="http://www.w3.org/2000/svg">
-          <path d="M3 4H21V6H3V4ZM3 11H21V13H3V11ZM3 18H15V20H3V18Z" />
-        </svg>
-      </div>
-      <h3>مسارات تعليمية متنوعة</h3>
-      <p>محتوى أكاديمي يشمل تخصصات متعددة، من علوم الحاسب إلى ريادة الأعمال، مصمم خصيصًا لطلاب الجامعات.</p>
-    </div>
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
 
-    <div class="card">
-      <div class="icon">
-        <!-- أيقونة لوحة تحكم -->
-        <svg width="40" height="40" viewBox="0 0 24 24" fill="#4ECDC4" xmlns="http://www.w3.org/2000/svg">
-          <path d="M4 13H10V20H4V13ZM14 4H20V20H14V4Z" />
-        </svg>
-      </div>
-      <h3>لوحة تحكم ذكية</h3>
-      <p>تتبع أدائك واطلع على تقارير تقدمك الأكاديمي، مع توصيات شخصية لتعزيز التعلم.</p>
-    </div>
+        /* ---------- HEADER ---------- */
+        .header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            box-shadow: var(--shadow-sm);
+            padding: 15px 0;
+            transition: var(--transition);
+        }
 
-    <div class="card">
-      <div class="icon">
-        <!-- أيقونة شهادات -->
-        <svg width="40" height="40" viewBox="0 0 24 24" fill="#4ECDC4" xmlns="http://www.w3.org/2000/svg">
-          <path d="M6 2H18C19.1 2 20 2.9 20 4V16C20 17.1 19.1 18 18 18H6C4.9 18 4 17.1 4 16V4C4 2.9 4.9 2 6 2ZM6 16H18V4H6V16ZM8 20H16V22H8V20Z" />
-        </svg>
-      </div>
-      <h3>شهادات وإثباتات معتمدة</h3>
-      <p>احصل على إثباتات رقمية وشهادات قابلة للمشاركة تدعم سيرتك الذاتية الأكاديمية والمهنية.</p>
-    </div>
+        .header.scrolled {
+            padding: 10px 0;
+        }
 
-  </div>
-</section>
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
 
-<section class="cta">
-  <div class="container">
-    <h2>جاهز لبدء رحلتك؟</h2>
-    <p>انضم الآن إلى SkillZen وابدأ تعلّمك الجامعي بطريقة ذكية وممتعة.</p>
-    <a href="{% url 'register' %}" class="btn btn-accent">سجل الآن</a>
-  </div>
-</section>
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--accent);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+        }
 
-{% include 'footer.html' %}
+        .logo i {
+            margin-left: 8px;
+            color: var(--secondary);
+        }
 
-<style>
-  :root {
-    --primary: #3E4A61;
-    --accent: #4ECDC4;
-    --bg: #f7f9fb;
-    --text: #333;
-    --muted: #666;
-  }
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
 
-  body {
-    margin: 0;
-    font-family: 'Cairo', sans-serif;
-    background-color: var(--bg);
-    color: var(--text);
-    line-height: 1.6;
-  }
+        .nav-links li {
+            margin: 0 12px;
+        }
 
-  .container {
-    max-width: 1000px;
-    margin: auto;
-    padding: 0 20px;
-  }
+        .nav-links a {
+            text-decoration: none;
+            color: var(--dark);
+            font-weight: 600;
+            font-size: 1.05rem;
+            padding: 8px 12px;
+            border-radius: var(--radius-sm);
+            transition: var(--transition);
+        }
 
-  /* ---------- HERO ---------- */
-  .hero {
-    background: linear-gradient(135deg, var(--accent), #a0f0e5);
-    color: #fff;
-    padding: 80px 0;
-    text-align: center;
-  }
-  .hero h1 { font-size: 2.5rem; margin-bottom: 10px; }
-  .brand { color: #fff; font-weight: bold; }
-  .lead  { font-size: 1.2rem; margin-bottom: 30px; color: #e0f7f4; }
+        .nav-links a:hover, 
+        .nav-links a.active {
+            color: var(--accent);
+            background: rgba(78, 205, 196, 0.1);
+        }
 
-  .hero-buttons {
-    display: flex;
-    justify-content: center;
-    gap: 20px;
-    flex-wrap: wrap;
-  }
+        .nav-buttons {
+            display: flex;
+            gap: 15px;
+        }
 
-  /* ---------- BUTTONS ---------- */
-  .btn {
-    padding: 12px 26px;
-    border-radius: 30px;
-    font-weight: bold;
-    text-decoration: none;
-    font-size: 1rem;
-    transition: background 0.3s ease;
-  }
-  .btn-primary   { background-color: #fff; color: var(--accent); border: none; }
-  .btn-primary:hover { background-color: #f1f1f1; }
-  .btn-outline   { border: 2px solid #fff; background: transparent; color: #fff; }
-  .btn-outline:hover { background-color: rgba(255,255,255,0.1); }
-  .btn-accent    { background-color: var(--accent); color: #fff; display: inline-block; margin-top: 20px; }
-  .btn-accent:hover { background-color: #38b2ac; }
+        .mobile-toggle {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            color: var(--dark);
+            cursor: pointer;
+        }
 
-  /* ---------- FEATURES ---------- */
-  .features { padding: 60px 0; }
-  .grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 20px;
-  }
-  .card {
-    background-color: #fff;
-    padding: 30px;
-    border-radius: 12px;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
-    text-align: center;
-  }
-  .card h3 { color: var(--primary); margin: 15px 0 12px; }
+        /* ---------- HERO ---------- */
+        .hero {
+            background: linear-gradient(135deg, var(--accent), var(--secondary));
+            color: #fff;
+            padding: 160px 0 100px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
 
-  /* أيقونات */
-  .icon { margin-bottom: 10px; }
-  .icon svg { display: block; margin: auto; }
+        .hero::before {
+            content: "";
+            position: absolute;
+            top: -100px;
+            right: -100px;
+            width: 300px;
+            height: 300px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.1);
+        }
 
-  /* ---------- CTA ---------- */
-  .cta {
-    background-color: var(--primary);
-    color: #fff;
-    padding: 60px 0;
-    text-align: center;
-  }
-</style>
+        .hero::after {
+            content: "";
+            position: absolute;
+            bottom: -150px;
+            left: -150px;
+            width: 400px;
+            height: 400px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .hero h1 {
+            font-size: 3.2rem;
+            margin-bottom: 20px;
+            line-height: 1.2;
+            animation: fadeInUp 1s ease;
+        }
+
+        .brand {
+            color: #fff;
+            font-weight: 800;
+            position: relative;
+            display: inline-block;
+        }
+
+        .brand::after {
+            content: "";
+            position: absolute;
+            bottom: 5px;
+            left: 0;
+            width: 100%;
+            height: 8px;
+            background: rgba(255, 255, 255, 0.3);
+            z-index: -1;
+            border-radius: 4px;
+        }
+
+        .lead {
+            font-size: 1.3rem;
+            margin-bottom: 40px;
+            color: rgba(255, 255, 255, 0.9);
+            animation: fadeInUp 1s ease 0.2s forwards;
+            opacity: 0;
+        }
+
+        .hero-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+            animation: fadeInUp 1s ease 0.4s forwards;
+            opacity: 0;
+        }
+
+        /* ---------- BUTTONS ---------- */
+        .btn {
+            padding: 14px 32px;
+            border-radius: 50px;
+            font-weight: 700;
+            text-decoration: none;
+            font-size: 1.05rem;
+            transition: var(--transition);
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            cursor: pointer;
+            border: none;
+            outline: none;
+            transform: translateY(0);
+            box-shadow: var(--shadow-sm);
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-md);
+        }
+
+        .btn:active {
+            transform: translateY(1px);
+        }
+
+        .btn-primary {
+            background-color: #fff;
+            color: var(--accent);
+        }
+
+        .btn-primary:hover {
+            background-color: #f8f9fa;
+        }
+
+        .btn-outline {
+            border: 2px solid #fff;
+            background: transparent;
+            color: #fff;
+        }
+
+        .btn-outline:hover {
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+
+        .btn-accent {
+            background-color: var(--accent);
+            color: #fff;
+            margin-top: 20px;
+        }
+
+        .btn-accent:hover {
+            background-color: var(--accent-dark);
+        }
+
+        /* ---------- FEATURES ---------- */
+        .features {
+            padding: 100px 0;
+        }
+
+        .section-header {
+            text-align: center;
+            max-width: 700px;
+            margin: 0 auto 60px;
+        }
+
+        .section-title {
+            font-size: 2.2rem;
+            color: var(--dark);
+            margin-bottom: 20px;
+            position: relative;
+            display: inline-block;
+        }
+
+        .section-title::after {
+            content: "";
+            position: absolute;
+            bottom: -10px;
+            right: 0;
+            width: 80px;
+            height: 4px;
+            background: var(--accent);
+            border-radius: 2px;
+        }
+
+        .section-subtitle {
+            font-size: 1.2rem;
+            color: var(--muted);
+            line-height: 1.7;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .card {
+            background-color: #fff;
+            padding: 40px 30px;
+            border-radius: var(--radius);
+            box-shadow: var(--shadow-sm);
+            text-align: center;
+            transition: var(--transition);
+            border: 1px solid rgba(0, 0, 0, 0.03);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .card:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--shadow-md);
+        }
+
+        .card::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(to left, var(--accent), var(--secondary));
+            opacity: 0;
+            transition: var(--transition);
+        }
+
+        .card:hover::before {
+            opacity: 1;
+        }
+
+        .card h3 {
+            color: var(--primary);
+            margin: 20px 0 15px;
+            font-size: 1.4rem;
+        }
+
+        .card p {
+            color: var(--muted);
+            font-size: 1.05rem;
+        }
+
+        /* أيقونات */
+        .icon {
+            width: 80px;
+            height: 80px;
+            background: rgba(78, 205, 196, 0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto;
+            transition: var(--transition);
+        }
+
+        .card:hover .icon {
+            background: var(--accent);
+            transform: scale(1.1);
+        }
+
+        .card:hover .icon svg {
+            fill: #fff;
+        }
+
+        .icon svg {
+            width: 40px;
+            height: 40px;
+            fill: var(--accent);
+            transition: var(--transition);
+        }
+
+        /* ---------- COURSES SECTION ---------- */
+        .courses {
+            background: var(--light);
+            padding: 100px 0;
+        }
+
+        .courses-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+
+        .course-card {
+            background: #fff;
+            border-radius: var(--radius);
+            overflow: hidden;
+            box-shadow: var(--shadow-sm);
+            transition: var(--transition);
+            border: 1px solid rgba(0, 0, 0, 0.05);
+        }
+
+        .course-card:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .course-img {
+            height: 200px;
+            background: linear-gradient(45deg, #4ECDC4, #5A67D8);
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+
+        .course-content {
+            padding: 25px;
+        }
+
+        .course-title {
+            color: var(--primary);
+            margin-bottom: 15px;
+            font-size: 1.4rem;
+        }
+
+        .course-info {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 20px;
+            padding-top: 20px;
+            border-top: 1px solid rgba(0, 0, 0, 0.1);
+        }
+
+        .course-info-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--muted);
+        }
+
+        .course-btn {
+            display: block;
+            width: 100%;
+            padding: 12px;
+            text-align: center;
+            background: var(--accent);
+            color: white;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: 600;
+            margin-top: 20px;
+            transition: var(--transition);
+        }
+
+        .course-btn:hover {
+            background: var(--accent-dark);
+        }
+
+        /* ---------- CTA ---------- */
+        .cta {
+            background: linear-gradient(135deg, var(--primary), var(--dark));
+            color: #fff;
+            padding: 100px 0;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta::before {
+            content: "";
+            position: absolute;
+            top: -50px;
+            left: -50px;
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        .cta::after {
+            content: "";
+            position: absolute;
+            bottom: -80px;
+            right: -80px;
+            width: 250px;
+            height: 250px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        .cta-content {
+            position: relative;
+            z-index: 2;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .cta h2 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+        }
+
+        .cta p {
+            font-size: 1.2rem;
+            color: rgba(255, 255, 255, 0.85);
+            margin-bottom: 30px;
+        }
+
+        /* ---------- FOOTER ---------- */
+        .footer {
+            background-color: var(--dark);
+            color: #fff;
+            padding: 70px 0 30px;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 50px;
+        }
+
+        .footer-col h3 {
+            font-size: 1.3rem;
+            margin-bottom: 25px;
+            position: relative;
+            padding-bottom: 10px;
+        }
+
+        .footer-col h3::after {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            width: 50px;
+            height: 2px;
+            background: var(--accent);
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 15px;
+        }
+
+        .footer-links a {
+            text-decoration: none;
+            color: rgba(255, 255, 255, 0.7);
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .footer-links a:hover {
+            color: var(--accent);
+            padding-right: 5px;
+        }
+
+        .footer-links a i {
+            font-size: 0.9rem;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .social-links a {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #fff;
+            transition: var(--transition);
+        }
+
+        .social-links a:hover {
+            background: var(--accent);
+            transform: translateY(-5px);
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 0.95rem;
+        }
+
+        /* ---------- ANIMATIONS ---------- */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .animate-on-scroll {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.6s ease, transform 0.6s ease;
+        }
+
+        .animate-on-scroll.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* ---------- RESPONSIVE ---------- */
+        @media (max-width: 992px) {
+            .hero h1 {
+                font-size: 2.8rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .mobile-toggle {
+                display: block;
+            }
+
+            .nav-links {
+                position: fixed;
+                top: 70px;
+                right: -100%;
+                flex-direction: column;
+                background: #fff;
+                width: 280px;
+                height: calc(100vh - 70px);
+                padding: 30px;
+                box-shadow: var(--shadow-lg);
+                transition: var(--transition);
+            }
+
+            .nav-links.active {
+                right: 0;
+            }
+
+            .nav-links li {
+                margin: 10px 0;
+            }
+
+            .nav-buttons {
+                display: none;
+            }
+
+            .hero {
+                padding: 140px 0 80px;
+            }
+
+            .hero h1 {
+                font-size: 2.4rem;
+            }
+
+            .lead {
+                font-size: 1.15rem;
+            }
+
+            .hero-buttons {
+                flex-direction: column;
+                gap: 15px;
+            }
+
+            .btn {
+                width: 100%;
+                max-width: 300px;
+                margin: 0 auto;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .lead {
+                font-size: 1.05rem;
+            }
+
+            .section-title {
+                font-size: 1.8rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header Section -->
+    <header class="header">
+        <div class="container">
+            <nav class="navbar">
+                <a href="#" class="logo">
+                    SkillZen <i class="fas fa-graduation-cap"></i>
+                </a>
+                
+                <ul class="nav-links">
+                    <li><a href="#" class="active">الرئيسية</a></li>
+                    <li><a href="#courses">المسارات التعليمية</a></li>
+                    <li><a href="#features">المحتوى الأكاديمي</a></li>
+                    <li><a href="#cta">الشهادات</a></li>
+                    <li><a href="#">المدونة</a></li>
+                    <li><a href="#contact">اتصل بنا</a></li>
+                </ul>
+                
+                <div class="nav-buttons">
+                    <a href="{% url 'login' %}" class="btn btn-outline">تسجيل الدخول</a>
+                    <a href="{% url 'register' %}" class="btn btn-primary">إنشاء حساب</a>
+                </div>
+                
+                <button class="mobile-toggle">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <main class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1>مرحبًا بك في <span class="brand">SkillZen</span></h1>
+                <p class="lead">منصة تعليمية مخصصة لطلاب الجامعات — تعلم، تطور، وانطلق بثقة نحو المستقبل.</p>
+                <div class="hero-buttons">
+                    <a href="{% url 'register' %}" class="btn btn-primary">
+                        <i class="fas fa-user-plus"></i> إنشاء حساب
+                    </a>
+                    <a href="{% url 'login' %}" class="btn btn-outline">
+                        <i class="fas fa-sign-in-alt"></i> تسجيل الدخول
+                    </a>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Features Section -->
+    <section class="features" id="features">
+        <div class="container">
+            <div class="section-header animate-on-scroll">
+                <h2 class="section-title">لماذا تختار SkillZen؟</h2>
+                <p class="section-subtitle">نقدم لكم تجربة تعليمية فريدة تلبي احتياجات الطلاب الجامعيين وتساعدهم على التفوق الأكاديمي والمهني</p>
+            </div>
+            
+            <div class="grid">
+                <div class="card animate-on-scroll">
+                    <div class="icon">
+                        <svg width="40" height="40" viewBox="0 0 24 24" fill="#4ECDC4" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M3 4H21V6H3V4ZM3 11H21V13H3V11ZM3 18H15V20H3V18Z" />
+                        </svg>
+                    </div>
+                    <h3>مسارات تعليمية متنوعة</h3>
+                    <p>محتوى أكاديمي يشمل تخصصات متعددة، من علوم الحاسب إلى ريادة الأعمال، مصمم خصيصًا لطلاب الجامعات.</p>
+                </div>
+
+                <div class="card animate-on-scroll">
+                    <div class="icon">
+                        <svg width="40" height="40" viewBox="0 0 24 24" fill="#4ECDC4" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M4 13H10V20H4V13ZM14 4H20V20H14V4Z" />
+                        </svg>
+                    </div>
+                    <h3>لوحة تحكم ذكية</h3>
+                    <p>تتبع أدائك واطلع على تقارير تقدمك الأكاديمي، مع توصيات شخصية لتعزيز التعلم.</p>
+                </div>
+
+                <div class="card animate-on-scroll">
+                    <div class="icon">
+                        <svg width="40" height="40" viewBox="0 0 24 24" fill="#4ECDC4" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M6 2H18C19.1 2 20 2.9 20 4V16C20 17.1 19.1 18 18 18H6C4.9 18 4 17.1 4 16V4C4 2.9 4.9 2 6 2ZM6 16H18V4H6V16ZM8 20H16V22H8V20Z" />
+                        </svg>
+                    </div>
+                    <h3>شهادات وإثباتات معتمدة</h3>
+                    <p>احصل على إثباتات رقمية وشهادات قابلة للمشاركة تدعم سيرتك الذاتية الأكاديمية والمهنية.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Courses Section -->
+    <section class="courses" id="courses">
+        <div class="container">
+            <div class="section-header animate-on-scroll">
+                <h2 class="section-title">المسارات التعليمية</h2>
+                <p class="section-subtitle">اكتشف مجموعة متنوعة من المسارات التعليمية المصممة خصيصًا لطلاب الجامعات</p>
+            </div>
+            
+            <div class="courses-grid">
+                <div class="course-card animate-on-scroll">
+                    <div class="course-img">
+                        علوم الحاسب
+                    </div>
+                    <div class="course-content">
+                        <h3 class="course-title">مسار علوم الحاسب المتقدم</h3>
+                        <p>مسار شامل يغطي أساسيات علوم الحاسب والخوارزميات وهياكل البيانات وتطوير البرمجيات.</p>
+                        <div class="course-info">
+                            <div class="course-info-item">
+                                <i class="far fa-clock"></i> 12 أسبوع
+                            </div>
+                            <div class="course-info-item">
+                                <i class="fas fa-graduation-cap"></i> متقدم
+                            </div>
+                        </div>
+                        <a href="#" class="course-btn">اكتشف المسار</a>
+                    </div>
+                </div>
+                
+                <div class="course-card animate-on-scroll">
+                    <div class="course-img">
+                        إدارة الأعمال
+                    </div>
+                    <div class="course-content">
+                        <h3 class="course-title">مسار ريادة الأعمال</h3>
+                        <p>تعلم أساسيات إدارة المشاريع والتسويق والتمويل لبدء مشروعك الخاص وتطويره.</p>
+                        <div class="course-info">
+                            <div class="course-info-item">
+                                <i class="far fa-clock"></i> 10 أسابيع
+                            </div>
+                            <div class="course-info-item">
+                                <i class="fas fa-graduation-cap"></i> متوسط
+                            </div>
+                        </div>
+                        <a href="#" class="course-btn">اكتشف المسار</a>
+                    </div>
+                </div>
+                
+                <div class="course-card animate-on-scroll">
+                    <div class="course-img">
+                        اللغات
+                    </div>
+                    <div class="course-content">
+                        <h3 class="course-title">مسار إتقان اللغة الإنجليزية</h3>
+                        <p>طور مهاراتك في اللغة الإنجليزية من خلال دورات متخصصة في القواعد والمحادثة والكتابة.</p>
+                        <div class="course-info">
+                            <div class="course-info-item">
+                                <i class="far fa-clock"></i> 8 أسابيع
+                            </div>
+                            <div class="course-info-item">
+                                <i class="fas fa-graduation-cap"></i> مبتدئ
+                            </div>
+                        </div>
+                        <a href="#" class="course-btn">اكتشف المسار</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta" id="cta">
+        <div class="container">
+            <div class="cta-content animate-on-scroll">
+                <h2>جاهز لبدء رحلتك؟</h2>
+                <p>انضم الآن إلى SkillZen وابدأ تعلّمك الجامعي بطريقة ذكية وممتعة.</p>
+                <a href="{% url 'register' %}" class="btn btn-accent">
+                    <i class="fas fa-rocket"></i> سجل الآن
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer Section -->
+    <footer class="footer" id="contact">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <h3>SkillZen</h3>
+                    <p>منصة تعليمية رائدة تهدف إلى تمكين طلاب الجامعات بالمهارات والمعرفة اللازمة لتحقيق النجاح الأكاديمي والمهني.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-col">
+                    <h3>روابط سريعة</h3>
+                    <ul class="footer-links">
+                        <li><a href="#"><i class="fas fa-chevron-left"></i> الرئيسية</a></li>
+                        <li><a href="#courses"><i class="fas fa-chevron-left"></i> المسارات التعليمية</a></li>
+                        <li><a href="#features"><i class="fas fa-chevron-left"></i> المحتوى الأكاديمي</a></li>
+                        <li><a href="#"><i class="fas fa-chevron-left"></i> المدونة</a></li>
+                        <li><a href="#contact"><i class="fas fa-chevron-left"></i> اتصل بنا</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-col">
+                    <h3>المسارات التعليمية</h3>
+                    <ul class="footer-links">
+                        <li><a href="#"><i class="fas fa-chevron-left"></i> علوم الحاسب</a></li>
+                        <li><a href="#"><i class="fas fa-chevron-left"></i> إدارة الأعمال</a></li>
+                        <li><a href="#"><i class="fas fa-chevron-left"></i> الهندسة</a></li>
+                        <li><a href="#"><i class="fas fa-chevron-left"></i> اللغات</a></li>
+                        <li><a href="#"><i class="fas fa-chevron-left"></i> التصميم</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-col">
+                    <h3>اتصل بنا</h3>
+                    <ul class="footer-links">
+                        <li><a href="#"><i class="fas fa-map-marker-alt"></i> الرياض، المملكة العربية السعودية</a></li>
+                        <li><a href="#"><i class="fas fa-phone"></i> +966 123 456 789</a></li>
+                        <li><a href="#"><i class="fas fa-envelope"></i> info@skillzen.com</a></li>
+                        <li><a href="#"><i class="fas fa-clock"></i> الأحد - الخميس: 8 صباحًا - 5 مساءً</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                <p>جميع الحقوق محفوظة &copy; 2023 SkillZen. تم التطوير بكل حب ❤️</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile Navigation Toggle
+        const mobileToggle = document.querySelector('.mobile-toggle');
+        const navLinks = document.querySelector('.nav-links');
+        
+        mobileToggle.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+            const icon = mobileToggle.querySelector('i');
+            
+            if (icon.classList.contains('fa-bars')) {
+                icon.classList.remove('fa-bars');
+                icon.classList.add('fa-times');
+            } else {
+                icon.classList.remove('fa-times');
+                icon.classList.add('fa-bars');
+            }
+        });
+        
+        // Header scroll effect
+        const header = document.querySelector('.header');
+        
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
+        
+        // Scroll animations
+        const animateElements = document.querySelectorAll('.animate-on-scroll');
+        
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        });
+        
+        animateElements.forEach(element => {
+            observer.observe(element);
+        });
+
+        // إصلاح مشكلة الروابط في القائمة المتنقلة للجوال
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                navLinks.classList.remove('active');
+                mobileToggle.querySelector('i').classList.remove('fa-times');
+                mobileToggle.querySelector('i').classList.add('fa-bars');
+            });
+        });
+
+        // تنعيم التمرير للروابط الداخلية
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>

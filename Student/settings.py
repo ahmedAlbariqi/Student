@@ -1,15 +1,20 @@
 from pathlib import Path
+import os
+import cloudinary
 
+# ────────────────────────────────────────────────
+# المسارات الأساسية
+# ────────────────────────────────────────────────
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-# ⚠️ تأكد من وضع هذا المفتاح في متغير بيئة عند نشر المشروع
+# ⚠️ ضع هذا المفتاح في متغير بيئة عند نشر المشروع
 SECRET_KEY = 'django-insecure-01k1y(b-dej2tt2sh3tk_6o547ep)x()fi4ioxg*o=ic13l*uw'
 
 DEBUG = True
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS: list[str] = []
 
 # ────────────────────────────────────────────────
-# التطبيقات المثبتة
+# التطبيقات
 # ────────────────────────────────────────────────
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -98,7 +103,7 @@ USE_TZ = True
 STATIC_URL = 'static/'
 
 # ────────────────────────────────────────────────
-# إعداد Cloudinary لتخزين الوسائط
+# Cloudinary Storage
 # ────────────────────────────────────────────────
 CLOUDINARY_STORAGE = {
     'CLOUD_NAME': 'da4etlrox',
@@ -108,7 +113,17 @@ CLOUDINARY_STORAGE = {
 
 DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
 
-# إذا رغبت بالاحتفاظ بالصور محليًا أثناء DEBUG يمكنك إبقاء MEDIA_*‎
+# تهيئة Cloudinary لاستخدامها في shell وأي كود Python
+cloudinary.config(
+    cloud_name=CLOUDINARY_STORAGE['CLOUD_NAME'],
+    api_key=CLOUDINARY_STORAGE['API_KEY'],
+    api_secret=CLOUDINARY_STORAGE['API_SECRET'],
+    secure=True
+)
+
+# ────────────────────────────────────────────────
+# ملفات الوسائط (اختياري أثناء التطوير)
+# ────────────────────────────────────────────────
 MEDIA_URL = '/media/'
 MEDIA_ROOT = BASE_DIR / 'media'
 

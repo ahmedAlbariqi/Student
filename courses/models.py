@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
+from cloudinary.models import CloudinaryField
 
 class Course(models.Model):
     title = models.CharField(
@@ -9,12 +10,7 @@ class Course(models.Model):
     description = models.TextField(
         verbose_name="وصف الدورة"
     )
-    image = models.ImageField(
-        upload_to='course_images/',
-        null=True,
-        blank=True,
-        verbose_name="صورة الدورة"
-    )
+    image = CloudinaryField("صورة الدورة", blank=True)
     instructor = models.ForeignKey(
         User,
         on_delete=models.CASCADE,
